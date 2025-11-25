@@ -9,7 +9,7 @@ return {
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    { 'j-hui/fidget.nvim', opts = {} },
+    { 'j-hui/fidget.nvim',       opts = {} },
 
     -- Allows extra capabilities provided by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
@@ -134,6 +134,13 @@ return {
         end
       end,
     })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = { "*.cpp", "*.h", "*.hpp", "*.cc" },
+      callback = function()
+        vim.cmd("silent! !clang-format -i %")
+      end,
+    })
+
 
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP specification.
@@ -156,6 +163,8 @@ return {
       ts_ls = {},
       tailwindcss = {},
       dockerls = {},
+      clangd = {},
+      jsonls = {},
       lua_ls = {
         settings = {
           Lua = {
@@ -178,7 +187,8 @@ return {
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
+      'stylua',       -- Used to format Lua code
+      'clang-format', -- Used to format C/C++ code
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

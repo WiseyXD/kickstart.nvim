@@ -31,6 +31,7 @@ return {
       'tsx',
       'css',
       'html',
+      'cpp',
     },
     -- Autoinstall languages that are not installed
     auto_install = true,
