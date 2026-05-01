@@ -21,7 +21,7 @@ return {
     workspaces = {
       {
         name = 'Obsidian-Vault',
-        path = '~/Obsidian Vault/',
+        path = '~/Documents/vault',
       },
     },
     mappings = {

@@ -64,6 +64,7 @@ require('lazy').setup({
   require 'kickstart.plugins.obsidian',
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.supermaven',
+  require 'kickstart.plugins.avante',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
